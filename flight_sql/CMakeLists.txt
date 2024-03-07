@@ -4,7 +4,7 @@
 #
 
 cmake_minimum_required(VERSION 3.11)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -21,7 +21,7 @@ endif()
 find_package(ZLIB REQUIRED)
 
 # Add Protobuf dependencies needed by Arrow Flight. Should be pre-installed.
-set(Protobuf_USE_STATIC_LIBS ON)
+set(Protobuf_USE_STATIC_LIBS OFF)
 find_package(Protobuf REQUIRED)
 
 # Add OpenSSL dependencies needed by Arrow Flight. Should be pre-installed.
