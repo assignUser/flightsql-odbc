@@ -5,7 +5,6 @@
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-include_directories(include)
 
 # Ensure fmt is loaded as header only
 add_compile_definitions(FMT_HEADER_ONLY)
@@ -47,6 +46,8 @@ add_library(odbcabstraction
   odbc_impl/ODBCEnvironment.cc
   odbc_impl/ODBCStatement.cc
 )
+target_include_directories(odbcabstraction PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
+target_link_libraries(odbcabstraction PUBLIC ODBC::ODBC Boost::headers)
 
 set_target_properties(odbcabstraction
     PROPERTIES
@@ -70,5 +71,4 @@ endif()
 add_library(spdlog INTERFACE)
 target_include_directories(spdlog INTERFACE ${spdlog_SOURCE_DIR}/include)
 
-add_dependencies(odbcabstraction spdlog)
-target_include_directories(odbcabstraction PUBLIC ${spdlog_SOURCE_DIR}/include)
+target_link_libraries(odbcabstraction PUBLIC spdlog)
