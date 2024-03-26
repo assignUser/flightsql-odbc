@@ -11,6 +11,8 @@
 #include <boost/variant.hpp>
 #include <map>
 #include <vector>
+#include <string>
+#include <functional>
 
 #include <odbcabstraction/types.h>
 #include <odbcabstraction/diagnostics.h>
@@ -19,8 +21,7 @@ namespace driver {
 namespace odbcabstraction {
 
 /// \brief Case insensitive comparator
-struct CaseInsensitiveComparator
-        : std::binary_function<std::string, std::string, bool> {
+struct CaseInsensitiveComparator {
   bool operator()(const std::string &s1, const std::string &s2) const {
     return boost::lexicographical_compare(s1, s2, boost::is_iless());
   }
